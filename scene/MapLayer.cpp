@@ -10,6 +10,7 @@ void MapLayer::setBackGronud(const char * filename)
 	//判断是否为空
 	if (bgImageView == nullptr)
 	{
+		Get_Screen_winSize;
 		//为空进行初始化
 		bgImageView = ImageView::create();
 		//修改锚点为00

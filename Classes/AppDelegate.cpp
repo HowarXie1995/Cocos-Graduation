@@ -119,6 +119,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 	FileUtils::getInstance()->addSearchPath("res");
 	FileUtils::getInstance()->addSearchPath("res/studio");
+	FileUtils::getInstance()->addSearchPath("res/Export");
 
     // create a scene. it's an autorelease object
 	SceneManager * manager = new SceneManager();

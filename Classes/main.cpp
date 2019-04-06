@@ -22,23 +22,29 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-//{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by game.RC
-//
+#include "main.h"
+#include "AppDelegate.h"
+#include "cocos2d.h"
 
-#define IDS_PROJNAME                100
-#define IDR_TESTJS    100
+USING_NS_CC;
 
-#define ID_FILE_NEW_WINDOW            32771
+int WINAPI _tWinMain(HINSTANCE hInstance,
+                       HINSTANCE hPrevInstance,
+                       LPTSTR    lpCmdLine,
+                       int       nCmdShow)
+{
+    UNREFERENCED_PARAMETER(hPrevInstance);
+    UNREFERENCED_PARAMETER(lpCmdLine);
+#ifdef WIN32
+	_tsetlocale(LC_ALL, _T(""));
+	::AllocConsole();
+	::freopen("conout$", "w", stdout);
+	::freopen("CONIN$", "r", stdin);
+	::freopen("CONOUT$", "w", stderr);
 
-// Next default values for new objects
-// 
-#ifdef APSTUDIO_INVOKED
-#ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE    201
-#define _APS_NEXT_CONTROL_VALUE        1000
-#define _APS_NEXT_SYMED_VALUE        101
-#define _APS_NEXT_COMMAND_VALUE        32775
 #endif
-#endif
+
+    // create the application instance
+    AppDelegate app;
+    return Application::getInstance()->run();
+}

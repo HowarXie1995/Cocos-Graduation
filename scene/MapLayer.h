@@ -4,6 +4,7 @@
 #include <iostream>
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
+#include "tools_define.h"
 
 USING_NS_CC;
 using namespace ui;
