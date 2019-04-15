@@ -1,0 +1,1 @@
+{"ATK":50,"ArmatureName":"ogre","ATKLimit":100,"DataName":"enemy_ogre/ogre.Exportjson","GetHitRect":"{{-75,-75},{150,150}}","HP":10000,"HitRect":"{{75,-75},{150,150}}","ID":3,"LockLimit":400,"PlayerName":"巨魔","Speed":1,"Type":2}

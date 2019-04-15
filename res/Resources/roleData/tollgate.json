@@ -1,0 +1,23 @@
+{
+  "Tollgate": [
+    {
+      "RoleData": [
+        "hero.json",
+        "orc.json"
+      ]
+    },
+    {
+      "RoleData": [
+        "hero.json",
+        "orge.json"
+      ]
+    },
+    {
+      "RoleData": [
+        "hero.json",
+        "goblin.json"
+      ]
+    }
+  ]
+
+}

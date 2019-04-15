@@ -24,6 +24,9 @@
 
 #include "AppDelegate.h"
 #include "SceneManager.h"
+#include "DataManager.h"
+
+USING_NS_CC;
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -120,9 +123,15 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	FileUtils::getInstance()->addSearchPath("res");
 	FileUtils::getInstance()->addSearchPath("res/studio");
 	FileUtils::getInstance()->addSearchPath("res/Export");
+	FileUtils::getInstance()->addSearchPath("roleData");
+	//加载关卡控制类
+	DataManager::getInstance()->initWithJsonFile("tollgate.json");
+	//给关卡层设初值
+	DataManager::getInstance()->setLevelIndex(0);
 
     // create a scene. it's an autorelease object
 	SceneManager * manager = new SceneManager();
+	//保存场景
 	manager->createLoadScene();
 
     // run
