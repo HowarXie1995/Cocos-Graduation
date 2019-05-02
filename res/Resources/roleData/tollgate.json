@@ -15,7 +15,10 @@
     {
       "RoleData": [
         "hero.json",
-        "goblin.json"
+        "goblin.json",
+        "orge.json",
+        "orc.json"
+
       ]
     }
   ]

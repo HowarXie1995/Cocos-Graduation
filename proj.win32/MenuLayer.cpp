@@ -18,7 +18,7 @@ bool MenuLayer::init()
 	//1、获取窗口大小
 	Get_Screen_winSize;
 	//2、添加一个标签
-	Label * label = Label::createWithTTF("黑夜",
+	Label * label = Label::createWithTTF("巫师大战兽人",
 		"fonts/white.ttf",
 		48);
 	/*可调节颜色*/

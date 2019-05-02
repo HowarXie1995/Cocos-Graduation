@@ -62,7 +62,7 @@ bool ControlLayer::init()
 			RoleCardController::getInstance()->monsterVec.push_back(role);
 			//设置怪物位置
 					//可视区宽的0.8 高的0.4
-			role->setPosition(Vec2(Director::getInstance()->getVisibleSize().width *0.8,
+			role->setPosition(Vec2(Director::getInstance()->getVisibleSize().width *(0.8 - i*0.1),
 				Director::getInstance()->getVisibleSize().height * 0.3));
 		}
 		else if (role->type == TYPE_HERO)
@@ -151,8 +151,6 @@ void ControlLayer::update(float dt)
 			return;
 		}
 
-		//调用释放对象的方法
-		this->purge();
 		//读取下一关的数据
 						Get_Screen_winSize;
 			Label * label = Label::createWithTTF("打败了敌人，进入下一关",	//标签名字
@@ -161,7 +159,9 @@ void ControlLayer::update(float dt)
 			label->setPosition(Vec2(winSize.width  / 2, winSize.height * 5 / 6));
 			label->setColor(Color3B::BLACK);
 			this->addChild(label,1);
-	//在前一关的基础+1
+		//在前一关的基础+1
+		//调用释放对象的方法
+		this->purge();
 		scheduleOnce(CC_SCHEDULE_SELECTOR(ControlLayer::onScheduleOnce),	//加入回调函数	
 					2.0);		//秒数
 
@@ -180,7 +180,7 @@ void ControlLayer::update(float dt)
 		}
 		++itr;
 	}
-	if (RoleCardController::getInstance()->heroVec.size() == 0)
+	if (RoleCardController::getInstance()->monsterVec.size() != 0 && RoleCardController::getInstance()->heroVec.size() == 0)
 	{
 		log("fail");
 	}
@@ -190,7 +190,6 @@ void ControlLayer::update(float dt)
 
 void ControlLayer::purge()
 {
-
 	//停止定时器
 	Director::getInstance()->getScheduler()->unschedule(
 		schedule_selector(ControlLayer::update), this);
@@ -202,6 +201,5 @@ void ControlLayer::purge()
 void ControlLayer::onScheduleOnce(float dt)
 {
 		DataManager::getInstance()->setLevelIndex(DataManager::getInstance()->getInstance()->getLevelIndex() + 1);
-		Sleep(2000);
 		tsm->goGameScene();
 }
