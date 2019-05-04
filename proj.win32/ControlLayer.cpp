@@ -148,6 +148,8 @@ void ControlLayer::update(float dt)
 			label->setPosition(Vec2(winSize.width  / 2, winSize.height * 5 / 6));
 			label->setColor(Color3B::BLACK);
 			this->addChild(label,1);
+			scheduleOnce(CC_SCHEDULE_SELECTOR(ControlLayer::onScheduleOnce),	//加入回调函数	
+					2.0);		//秒数
 			return;
 		}
 
@@ -200,6 +202,21 @@ void ControlLayer::purge()
 
 void ControlLayer::onScheduleOnce(float dt)
 {
-		DataManager::getInstance()->setLevelIndex(DataManager::getInstance()->getInstance()->getLevelIndex() + 1);
+	switch (DataManager::getInstance()->getLevelIndex() + 1)
+	{
+	case 1:
+	case 2:
+	{
+		DataManager::getInstance()->setLevelIndex(DataManager::getInstance()->getLevelIndex() + 1);
 		tsm->goGameScene();
+	}
+	break;
+	case 3:
+	{
+		tsm->goStartScene();
+	}break;
+	default:
+		break;
+	}
+
 }

@@ -120,7 +120,6 @@ void BaseRole::animationEvent(Armature * pArmature, MovementEventType movementTy
 						lockRole->getBaseAI()->stopRoleAI();
 						lockRole->getBaseFSM()->changeToDead();
 					}
-					
 				}
 			}
 
