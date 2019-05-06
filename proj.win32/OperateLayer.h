@@ -9,6 +9,13 @@
 USING_NS_CC;
 using namespace ui;
 
+enum BUTTON {
+	ATTACK = 101,
+	CLOSE,
+	PUASE,
+	REBACK
+};
+
 class OperateLayer:public Layer
 {
 public:

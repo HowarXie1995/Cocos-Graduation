@@ -31,19 +31,26 @@ bool MenuLayer::init()
 		CC_CALLBACK_1(MenuLayer::menuCallBack, this));
 	//给menuItem设置一个Tag
 	menuItem->setTag(101);
-	menuItem->setPosition(Vec2(winSize.width / 2, winSize.height * 0.3));
+	menuItem->setPosition(Vec2(winSize.width / 2, winSize.height * 0.5));
 	/*结束按钮*/
 	MenuItemLabel * menuItem_2 = MenuItemLabel::create(Label::createWithTTF("结束", "fonts/white.ttf", 30),
 		CC_CALLBACK_1(MenuLayer::menuCallBack, this));
 	//给menuItem设置一个Tag
 	menuItem_2->setTag(102);
-	menuItem_2->setPosition(Vec2(winSize.width / 2, winSize.height * 0.15));
+	menuItem_2->setPosition(Vec2(winSize.width / 2, winSize.height * 0.3));
 
 	//创建菜单对象
 	auto menu = Menu::create(menuItem, menuItem_2, NULL);
 	menu->setPosition(Point::ZERO);
 	this->addChild(menu);
+	auto monster1 = Sprite::create("monster1.png");
+	monster1->setPosition(Vec2(1000,300));
+	monster1->setFlipX(true);
+	this->addChild(monster1, 1);
 
+	auto hero1 = Sprite::create("hero1.png");
+	hero1->setPosition(Vec2(200,300));
+	this->addChild(hero1, 1);
 	return true;
 }
 

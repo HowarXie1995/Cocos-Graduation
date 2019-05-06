@@ -106,6 +106,25 @@ bool ControlLayer::init()
 	this->addChild(rocker, 1);
 	Director::getInstance()->getScheduler()->
 		schedule(schedule_selector(ControlLayer::update), this, (float)1 / 60, false);
+	//加入头像
+	auto head = Sprite::create("head.png");
+	head->setPosition(Point(68, Director::getInstance()->getVisibleSize().height - 50));
+	this->addChild(head);
+	//创建血条
+	auto sprite = Sprite::create("bar.png");   //创建进度框
+	sprite->setPosition(Point(Director::getInstance()->getVisibleSize().width * 0.3, 
+	Director::getInstance()->getVisibleSize().height - 40)); //设置框的位置
+	this->addChild(sprite);            //加到默认图层里面去
+	auto sprBlood = Sprite::create("blood.png");  //创建血条
+	ProgressTimer * progress = ProgressTimer::create(sprBlood); //创建progress对象
+	progress->setType(ProgressTimer::Type::BAR);        //类型：条状
+	progress->setPosition(Point(Director::getInstance()->getVisibleSize().width *0.3, 
+	Director::getInstance()->getVisibleSize().height - 40));
+	//从右到左减少血量
+	progress->setMidpoint(Point(0, 0.5));     //如果是从左到右的话，改成(1,0.5)
+	progress->setBarChangeRate(Point(1, 0));
+	progress->setTag(3);       //做一个标记
+	this->addChild(progress);
 	
 	return true;
 }
@@ -122,6 +141,8 @@ void ControlLayer::update(float dt)
 		//让获取到的英雄动作与摇杆绑定
 		RoleCardController::getInstance()->getHero()->getBaseFSM()
 			->switchMoveState(rocker->rockerDirection);
+		auto progress = (ProgressTimer *)this->getChildByTag(3);
+		progress->setPercentage((((float)(RoleCardController::getInstance()->getHero()->property->getHP())/ (float)10000) * 100));  //百分制显示
 	}
 	//创建一个迭代器，遍历monster的容器
 	std::vector<BaseRole *>::iterator itr = RoleCardController::getInstance()->monsterVec.begin();
@@ -186,8 +207,6 @@ void ControlLayer::update(float dt)
 	{
 		log("fail");
 	}
-
-
 }
 
 void ControlLayer::purge()
